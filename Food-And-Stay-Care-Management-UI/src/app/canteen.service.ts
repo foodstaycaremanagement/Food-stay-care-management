@@ -17,4 +17,21 @@ export class CanteenService {
     return this.http.get<CanteenMenu[]>(this.baseUrl);
   }
 
+  getDays():Observable<String[]> {
+    return this.http.get<String[]>(this.baseUrl+"/days");
+  }
+
+  getMealTypes():Observable<String[]> {
+    return this.http.get<String[]>(this.baseUrl+"/mealtypes");
+  }
+
+  getCanteenMenuForOwner(day:string,mealType:string):Observable<CanteenMenu[]>
+  {   
+   return this.http.get<CanteenMenu[]>(this.baseUrl+"/"+day+"/"+mealType);
+  }
+
+  
+
+
+
 }

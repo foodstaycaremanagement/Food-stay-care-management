@@ -12,6 +12,10 @@ import { CanteenMenuComponent } from './canteen-menu/canteen-menu.component';
 import { CanteenService } from './canteen.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CanteenOwnerHomeComponent } from './canteen-owner-home/canteen-owner-home.component';
+import { CanteenOwnerUpdateMenuComponent } from './canteen-owner-update-menu/canteen-owner-update-menu.component';
+import { CanteenOwnerDeleteMenuComponent } from './canteen-owner-delete-menu/canteen-owner-delete-menu.component';
+import { CanteenOwnerAddMenuComponent } from './canteen-owner-add-menu/canteen-owner-add-menu.component';
 
 
 
@@ -23,7 +27,11 @@ import { FormsModule } from '@angular/forms';
     ContactUsComponent,
     AboutUsComponent,
     RegistrationComponent,
-    CanteenMenuComponent
+    CanteenMenuComponent,
+    CanteenOwnerHomeComponent,
+    CanteenOwnerUpdateMenuComponent,
+    CanteenOwnerDeleteMenuComponent,
+    CanteenOwnerAddMenuComponent
   ],
   imports: [
     BrowserModule,
