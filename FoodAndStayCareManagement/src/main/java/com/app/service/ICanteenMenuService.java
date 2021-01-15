@@ -1,0 +1,18 @@
+package com.app.service;
+
+import java.util.List;
+
+import com.app.pojos.Day;
+import com.app.pojos.MealType;
+import com.app.pojos.MenuItem;
+
+public interface ICanteenMenuService {
+
+	
+		List<MenuItem> getMenuForMorning(Day day);
+
+		List<MenuItem> getMenuForAfterNoon(Day day, MealType breakfast);
+
+		List<MenuItem> getMenuForEvening(Day day, MealType breakfast, MealType lunch);
+	
+}
