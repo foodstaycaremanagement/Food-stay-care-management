@@ -1,5 +1,8 @@
 package com.app.pojos;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.*;
 
 @Entity
@@ -28,6 +31,8 @@ public class MenuItem extends BaseEntity {
 	
 	public MenuItem() {
 		System.out.println("In Constructor of: "+getClass().getName());
+		System.out.println(LocalTime.now().getHour());
+		System.out.println(LocalDate.now().getDayOfWeek());
 	}
 
 	public MenuItem(String itemName, int totalQuantity, String description, double price, MealType mealType, Day day) {

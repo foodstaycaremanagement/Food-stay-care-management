@@ -2,5 +2,5 @@ package com.app.pojos;
 
 public enum MealType {
 
-	BREAKFAST,LUNCH,SNACKS,DINNER
+	BREAKFAST,LUNCH,DINNER,ALL_TIME_SNACKS
 }
