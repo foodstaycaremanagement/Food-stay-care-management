@@ -1,0 +1,21 @@
+<div class="container">
+    <br>
+    <h3>Today's Menu</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Meal</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of menu">
+                <td>{{m.itemName}}.</td>
+                <td>{{m.description}}</td>
+                <td>{{m.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
