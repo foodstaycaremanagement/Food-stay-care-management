@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -86,8 +85,8 @@ public class CanteenMenuController {
 	
 	@PostMapping("/{day}/{mealType}")
 	public ResponseEntity<?> addNewMenuItem(@PathVariable String day,@PathVariable String mealType , @RequestBody MenuItem menuItem){
-		menuItem.setDay(Day.valueOf(day));
-		menuItem.setMealType(MealType.valueOf(mealType));
+		menuItem.setDay(Day.valueOf(day.toUpperCase()));
+		menuItem.setMealType(MealType.valueOf(mealType.toUpperCase()));
 		try {
 			return new ResponseEntity<>(service.addNewItemToMenuList(menuItem),HttpStatus.CREATED);
 			
@@ -97,4 +96,30 @@ public class CanteenMenuController {
 		}
 		
 	}
+	
+	@GetMapping("/days")
+	public ResponseEntity<?> getAllDays(){
+		Day[] names=Day.values();
+		String[] days= new String[names.length];
+		for(int i=0;i<names.length;i++)
+		{
+			days[i]=names[i].name();
+		}
+	
+			return new ResponseEntity<>(days,HttpStatus.OK);
+	}
+	
+	@GetMapping("/mealtypes")
+	public ResponseEntity<?> getAllMealTypes(){
+		MealType[] names=MealType.values();
+		String[] mealTypes= new String[names.length];
+		for(int i=0;i<names.length;i++)
+		{
+			mealTypes[i]=names[i].name();
+		}
+	
+			return new ResponseEntity<>(mealTypes,HttpStatus.OK);
+	  }
+	
+	
 }

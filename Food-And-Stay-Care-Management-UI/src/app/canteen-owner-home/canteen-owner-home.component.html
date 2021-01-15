@@ -1,0 +1,47 @@
+<form>
+
+    <select #day name="days">
+        <option *ngFor="let d of days" value='{{d}}' name="day">{{d}}</option>
+    </select>
+
+    <select #mealType name="mealTypes">
+        <option *ngFor="let t of mealTypes" value='{{t}}' name="mealtype">{{t}}</option>
+    </select>
+    <input type="submit" value="Search" class="btn btn-primary" (click)="getMenu(day.value,mealType.value)">
+
+</form>
+
+<div class="container">
+    <br>
+    <h3>Today's Menu</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Meal</th>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th>Meal Type</th>
+                <th>Day</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let m of menu">
+                <td>{{m.id}}.</td>
+                <td>{{m.itemName}}.</td>
+                <td>{{m.totalQuantity}}</td>
+                <td>{{m.description}}</td>
+                <td>{{m.mealType}}</td>
+                <td>{{m.day}}</td>
+                <td>{{m.price}}</td>
+                <td>
+                    <button (click)="updateMenu(m.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                    <button (click)="deleteMenu(m.id)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
