@@ -19,55 +19,56 @@ public class CanteenMenuServiceImpl implements ICanteenMenuService{
 	
 	@Autowired 
 	private CanteenMenuRepository repo;
+	private Optional<MenuItem> item;
 
-
-	
 	@Override
 	public List<MenuItem> getMenuForMorning(Day day) {
 		
-		return  repo.findByDay(day);
+		return repo.findByDay(day);
 	}
 
-	
 	@Override
 	public List<MenuItem> getMenuForAfterNoon(Day day, MealType breakfast) {
 		
-		return repo.findByDayAndMealType1( day, breakfast);
+		return repo.findByDayAndMealTypeExceptBreakfast(day, breakfast);
 	}
 
-	
 	@Override
 	public List<MenuItem> getMenuForEvening(Day day, MealType breakfast, MealType lunch) {
 		
-		return repo.findByDayAndMealType2(day, breakfast, lunch);
+		return repo.findByDayAndMealTypeExceptBreakfastLunch(day, breakfast, lunch);
 	}
-
-
+	
 	@Override
 	public List<MenuItem> getMenuByDayAndMealType(Day day, MealType mealType) {
 		
 		return repo.findByDayAndMealType(day, mealType);
 	}
 
-
 	@Override
 	public void deleteMenuItem(int id) {
-
-		Optional<MenuItem> optional = repo.findById(id);
-		if (optional.isPresent())
+		Optional<MenuItem> item=repo.findById(id);
+		if(item.isPresent())
+		{
 			repo.deleteById(id);
-
-	}
-
-
-	@Override
-	public MenuItem updateMenuItemDetails(MenuItem item) {
-		Optional<MenuItem> optional = repo.findById(item.getId());
-		if (optional.isPresent())
-			return repo.save(item); 
-		return null;
+		}
 		
 	}
+
+	@Override
+	public MenuItem updateMenuItemDetails(MenuItem menuItem) {
+		Optional<MenuItem> item = repo.findById(menuItem.getId());
+		if (item.isPresent())
+			return repo.save(menuItem); 
+		return null;
+	}
+
+	@Override
+	public MenuItem addNewItemToMenuList(MenuItem item) {
+		
+		return repo.save(item);
+	}
+
 
 	
 }

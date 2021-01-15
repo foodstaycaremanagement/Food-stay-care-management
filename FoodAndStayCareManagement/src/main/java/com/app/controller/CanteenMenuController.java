@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +25,13 @@ import com.app.service.ICanteenMenuService;
 @RestController
 @RequestMapping("/menu")
 public class CanteenMenuController {
-
-	@Autowired
+	
+	@Autowired 
 	private ICanteenMenuService service;
+	
 	@GetMapping
-	public ResponseEntity<?> getTodaysMenu() {
-
+	public ResponseEntity<?> getTodaysMenu(){
+		
 		Day day = Day.valueOf(LocalDate.now().getDayOfWeek().toString());
 		int time = LocalTime.now().getHour();
 		List<MenuItem> items = new ArrayList<>();
@@ -46,7 +48,6 @@ public class CanteenMenuController {
 		}
 		return new ResponseEntity<>(items, HttpStatus.OK);
 	}
-	
 	
 	@GetMapping("/{day}/{mealType}")
 	public ResponseEntity<?> getMenuList(@PathVariable String day,@PathVariable String mealType){
@@ -79,8 +80,17 @@ public class CanteenMenuController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	
-	
-	
-	
+	@PostMapping("/{day}/{mealType}")
+	public ResponseEntity<?> addNewMenuItem(@PathVariable String day,@PathVariable String mealType , @RequestBody MenuItem menuItem){
+		menuItem.setDay(Day.valueOf(day));
+		menuItem.setMealType(MealType.valueOf(mealType));
+		try {
+			return new ResponseEntity<>(service.addNewItemToMenuList(menuItem),HttpStatus.CREATED);
+			
+		}
+		catch(RuntimeException e){
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+	}
 }
