@@ -14,5 +14,13 @@ public interface ICanteenMenuService {
 		List<MenuItem> getMenuForAfterNoon(Day day, MealType breakfast);
 
 		List<MenuItem> getMenuForEvening(Day day, MealType breakfast, MealType lunch);
-	
+		
+		List<MenuItem> getMenuByDayAndMealType(Day day,MealType mealType);
+		
+		void deleteMenuItem(int id);
+		
+		MenuItem updateMenuItemDetails(MenuItem item);
+		
+		
+		
 }

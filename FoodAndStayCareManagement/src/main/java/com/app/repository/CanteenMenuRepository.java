@@ -16,10 +16,12 @@ public interface CanteenMenuRepository extends JpaRepository<MenuItem, Integer>{
 	List<MenuItem> findByDay(Day day);
 	
 	@Query("select m from MenuItem m where  m.day=:day and m.mealType<>:breakfast")
-	List<MenuItem> findByDayAndMealType(@Param("day")Day day,@Param("breakfast")MealType breakfast);
+	List<MenuItem> findByDayAndMealType1(@Param("day")Day day,@Param("breakfast")MealType breakfast);
 	
 	@Query("select m from MenuItem m where  m.day=:day and m.mealType<>:breakfast and  m.mealType<>:lunch")
 	List<MenuItem> findByDayAndMealType2(@Param("day")Day day,@Param("breakfast")MealType breakfast,@Param("lunch")MealType lunch);
+	
+	List<MenuItem> findByDayAndMealType(Day day,MealType mealType);
 	
 	
 
