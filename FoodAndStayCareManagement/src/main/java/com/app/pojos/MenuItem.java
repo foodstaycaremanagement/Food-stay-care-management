@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "menu_items")
+
 public class MenuItem extends BaseEntity {
 
 	@Column(name = "item_name", nullable = false, length = 15)

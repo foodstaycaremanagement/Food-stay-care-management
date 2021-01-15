@@ -8,6 +8,10 @@ import { LoginComponent } from './login/login.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { CanteenMenuComponent } from './canteen-menu/canteen-menu.component';
+import { CanteenService } from './canteen.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -18,14 +22,17 @@ import { RegistrationComponent } from './registration/registration.component';
     LoginComponent,
     ContactUsComponent,
     AboutUsComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    CanteenMenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    FormsModule
  
   ],
-  providers: [],
+  providers: [CanteenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
